@@ -4,7 +4,9 @@ import { getDatabase, ref, child, get } from "firebase/database";
 
 import { Box, IconBox } from './styles'
 import {AiOutlineBell} from 'react-icons/ai'
-import { hasSelectionSupport } from '@testing-library/user-event/dist/utils';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Notification = () => {
     const [info, setInfo] = useState([{data: null}]);
@@ -31,34 +33,33 @@ export const Notification = () => {
     }).catch((error) => {
             console.error(error);
     });
+    
 
     useEffect(() => {
         if (JSON.stringify(test) !== JSON.stringify(info)) {
+            console.log(info)
             setTest(info)
-            setChange(true)
-            setTimeout(() => {
-                setChange(false)
-            }, 3000);
+            // setChange(true)
+            
+                
+            toast.info(info[0].data, {
+                position: "top-right",
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }
     }, [info])
     
 
     
     return (
-        <Box change={change}>
-            {
-                change ? 
-                <>
-                    <IconBox change={change}>
-                        <AiOutlineBell size={32} />
-                    </IconBox>
-                    <h4>{ test ? test.map((d) => d.data) : ''}</h4>
-                </> :
-                <IconBox change={change}>
-                    <AiOutlineBell size={32} />
-                </IconBox>
-
-            }
+        
+        <Box>
+            <ToastContainer/>
         </Box>
     )
 }
