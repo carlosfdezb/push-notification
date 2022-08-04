@@ -33,6 +33,15 @@ export const Notification = () => {
     }).catch((error) => {
             console.error(error);
     });
+
+    const myComponent = (data) => 
+        <div style={{ marginTop: 4}}>
+            <b>{data[0].title}</b>
+        <p style={{ fontSize: "10px", marginTop: -3}}>
+            {data[0].subtitle}
+        </p>
+        </div>
+    ;
     
 
     useEffect(() => {
@@ -42,7 +51,7 @@ export const Notification = () => {
             // setChange(true)
             
                 
-            toast.info(info[0].data, {
+            toast.info(myComponent(info), {
                 position: "top-right",
                 autoClose: 10000,
                 hideProgressBar: false,
@@ -51,6 +60,8 @@ export const Notification = () => {
                 draggable: true,
                 progress: undefined,
                 });
+
+            
         }
     }, [info])
     
