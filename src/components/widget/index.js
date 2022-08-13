@@ -37,13 +37,13 @@ export const Notification = () => {
     const myComponent = (data) => 
         <div style={{ marginTop: 4}}>
             <b>{data[0].title}</b>
-        <p style={{ fontSize: "10px", marginTop: -3}}>
+        <p style={{ fontSize: "10px", marginTop: -1}}>
             {data[0].subtitle}
         </p>
         </div>
     ;
     
-
+    
     useEffect(() => {
         if (JSON.stringify(test) !== JSON.stringify(info)) {
             console.log(info)
