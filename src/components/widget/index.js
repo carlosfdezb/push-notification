@@ -24,15 +24,20 @@ export const Notification = () => {
     const app = initializeApp(firebaseConfig);
     const dbRef = ref(getDatabase(app));
    
-    get(child(dbRef, `/test/0`)).then((snapshot) => {
-        if (snapshot.exists()) {
-            setInfo([snapshot.val()]);
-        } else {
-            console.log("No hay notificaciones");
-        }
-    }).catch((error) => {
-            console.error(error);
-    });
+  
+    useEffect(() => {
+        let dbRef = ref(getDatabase(app));
+        get(child(dbRef, `/test/0`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                setInfo([snapshot.val()]);
+                setChange(change+1)
+            } else {
+                setChange(change+1)
+            }
+        }).catch((error) => {
+            setChange(change+1)
+        });
+    }, [change])
 
     const myComponent = (data) => 
         <div style={{ marginTop: 4}}>
@@ -60,8 +65,6 @@ export const Notification = () => {
                 draggable: true,
                 progress: undefined,
                 });
-
-            
         }
     }, [info])
     

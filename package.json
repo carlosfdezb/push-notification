@@ -20,6 +20,7 @@
     "react-toastify": "^9.0.1",
     "reactfire": "^4.2.1",
     "styled-components": "^5.3.5",
+    "vercel": "^28.2.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
